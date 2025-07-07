@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANT SMASHER</title>
+    <!-- Favicon For the Website -->
+    <link rel="shortcut icon" type="image/png" href="./assets/icon.png" />
+    <!-- Tailwind CSS Playful CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- P5 Library For Canvas And Game Development -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <!-- My JS File For The Game -->
+    <script src="sketch.js"></script>
+    <script src="./js/Insect.js"></script>
+    <script src="./js/AntSmasher.js"></script>
+  </head>
+  <body
+    class="w-full min-h-screen flex flex-col justify-evenly items-center lg:flex-row lg:justify-around lg:items-center bg-gray-100"
+  >
+    <!-- Game Screen -->
+    <div id="canvas-container" class="border shadow-lg mb-4 lg:mb-0"></div>
+    <!-- Instruction Screen -->
+    <div
+      class="w-[95%] p-2 lg:w-[45%] bg-transparent flex flex-col justify-start items-center"
+    >
+      <h2 class="text-2xl lg:text-4xl font-bold mb-6 text-gray-700">
+        🕹️ How to Play
+      </h2>
+      <ul class="list-disc list-inside text-gray-600 space-y-1 text-lg">
+        <li class="mb-2">
+          Click on the
+          <span class="text-red-500 font-semibold">Red Ants</span> to gain
+          points.
+        </li>
+        <li class="mb-2">
+          Don't squash the
+          <span class="text-cyan-500 font-semibold">Blue Bees</span> or you
+          lose!
+        </li>
+        <li class="mb-2">Game ends if a red ant reaches the bottom.</li>
+        <li class="mb-2">
+          Press
+          <kbd class="px-1 py-0.5 bg-gray-200 rounded border">Space</kbd> to
+          restart.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
