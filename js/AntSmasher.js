@@ -28,10 +28,9 @@ function setup() {
 function draw() {
   background(51);
   if (frameCount % 90 === 0) {
-    if (random() > 0.6) {
-      bugs.push(new Insect(random(width / 2) + width / 4, random() > 0.8));
-    }
+    bugs.push(new Insect(random(width / 2) + width / 4, random() > 0.8));
   }
+
   if (frameCount % 900 === 0) {
     speed += 0.3;
   }
@@ -96,6 +95,10 @@ function restartGame() {
   speed = 3;
   playing = true;
   loop();
+  if (userStarted) {
+    bgm.currentTime = 0;
+    bgm.play();
+  }
 }
 
 //Function to endgame
@@ -104,5 +107,6 @@ function endGame() {
     gameOverSound.play();
   }
   playing = false;
+  bgm.pause();
   noLoop();
 }
