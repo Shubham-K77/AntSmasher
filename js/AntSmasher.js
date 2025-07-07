@@ -2,6 +2,8 @@ var speed;
 var bugs = [];
 var score;
 var playing;
+let squishSound, gameOverSound, bgm;
+let userStarted = false;
 
 //Function For Initial Setup
 function setup() {
@@ -14,19 +16,24 @@ function setup() {
   speed = 3;
   playing = true;
 
+  // Get audio elements
+  squishSound = document.getElementById("squishSound");
+  gameOverSound = document.getElementById("gameOverSound");
+  bgm = document.getElementById("bgm");
+
   textSize(30);
 }
 
 //Function to draw the canvas
 function draw() {
   background(51);
-  if (frameCount % 60 === 0) {
+  if (frameCount % 90 === 0) {
     if (random() > 0.6) {
       bugs.push(new Insect(random(width / 2) + width / 4, random() > 0.8));
     }
   }
-  if (frameCount % 600 === 0) {
-    speed++;
+  if (frameCount % 900 === 0) {
+    speed += 0.3;
   }
   for (var i = bugs.length - 1; i >= 0; i--) {
     bugs[i].update();
@@ -59,9 +66,15 @@ function draw() {
 
 //Function for the squashing logic
 function mousePressed() {
+  if (!userStarted) {
+    userStarted = true;
+    bgm.play();
+  }
   for (var i = 0; i < bugs.length; i++) {
     if (bugs[i].squashedBy(mouseX, mouseY)) {
       bugs[i].squashed = true;
+      squishSound.currentTime = 0;
+      squishSound.play();
     }
     if (bugs[i].squashed && bugs[i].type) {
       endGame();
@@ -87,6 +100,9 @@ function restartGame() {
 
 //Function to endgame
 function endGame() {
+  if (userStarted) {
+    gameOverSound.play();
+  }
   playing = false;
   noLoop();
 }
